@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+{{ partial "head.html" }}
+
+<body>
+  <div class="container" style="margin-top: 20px;">
+    <div class="row text-center">
+      <div class="col"><h1>{{ .Site.Title }} participants</h1></div>
+    </div>
+  <hr/>
+    <div class="row">
+    {{ range $index, $element := (where .Data.Pages "Section" "participants") }}
+      {{ if modBool $index 4 }}<div class="w-100"></div>{{ end }}
+      <div class="col">
+        {{partial "participant.html" $element }}
+      </div>
+    {{end}}
+    </div> 
+  </div>
+
+  {{ partial "scripts.html" }}
+</body>
+
+</html>

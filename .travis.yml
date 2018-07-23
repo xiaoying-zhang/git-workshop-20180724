@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "8.9"
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.45/hugo_0.45_Linux-32bit.deb
+  - sudo dpkg -i hugo*.deb
+  - rm hugo*.deb
+
+script:
+  - hugo
+
+deploy:
+  provider: firebase
+  token: "${FIREBASE_DEPLOY_TOKEN}"
+  project: "${FIREBASE_PROJECT}"
+  skip_cleanup: true
+  on:
+    branch: master
